@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom"
 import { Authorized } from "./views/Authorized"
-
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import "./bartreuse.css"
+import { ApplicationViews } from "./views/ApplicationViews"
 
 
 export const Bartreuse = () => {
@@ -16,7 +16,8 @@ export const Bartreuse = () => {
             <Authorized>
                 <>
                     <NavBar />
-                    
+                   
+                    <ApplicationViews />
                 </>
             </Authorized>
 

@@ -1,0 +1,13 @@
+body {
+    background-color: #6699cc;
+    /* CSS HEX */
+    --chartreuse-web: #7fff00ff;
+    --yellow: #ffff00ff;
+    --green: #00ff00ff;
+
+    /* CSS HSL */
+    --chartreuse-web: hsla(90, 100%, 50%, 1);
+    --yellow: hsla(60, 100%, 50%, 1);
+    --green: hsla(120, 100%, 50%, 1);
+
+}

@@ -23,7 +23,7 @@ export const Register = (props) => {
                 if (createdUser.hasOwnProperty("id")) {
                     localStorage.setItem("honey_user", JSON.stringify({
                         id: createdUser.id,
-                        staff: createdUser.isStaff
+                        Owner: createdUser.isOwner
                     }))
 
                     navigate("/")
@@ -72,10 +72,10 @@ export const Register = (props) => {
                 <fieldset>
                     <input onChange={(evt) => {
                         const copy = {...customer}
-                        copy.isStaff = evt.target.checked
+                        copy.isOwner = evt.target.checked
                         setCustomer(copy)
                     }}
-                        type="checkbox" id="isStaff" />
+                        type="checkbox" id="isOwner" />
                     <label htmlFor="email"> I am an owner of the bar. </label>
                 </fieldset>
                 <fieldset>

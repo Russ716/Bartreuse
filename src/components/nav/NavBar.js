@@ -3,23 +3,21 @@ import { Link, useNavigate } from "react-router-dom"
 import "./NavBar.css"
 
 export const NavBar = () => {
-    const localKandyUser = localStorage.getItem("kandy_user")
+    const localKandyUser = localStorage.getItem("honey_user")
     const kandyUserObject = JSON.parse(localKandyUser)
     const navigate = useNavigate()
 
     return (
         <ul className="navbar">
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/locations">Locations</Link>
-            </li>
-            <li className="navbar__item active"><Link className="navbar__link" to="/ProductContainer">Products</Link></li>
-            <li className="navbar__item active"><Link className="navbar__link" to="/productForm">New Product</Link></li>
-            <li className="navbar__item active"><Link className="navbar__link" to="/employeeForm">New Employee</Link></li>
+            <li className="navbar__item active"><Link className="navbar__link" to="/bottleList">List of Bottles</Link></li>
+            <li className="navbar__item active"><Link className="navbar__link" to="/NewBottleForm">New Bottle</Link></li>
+            <li className="navbar__item active"><Link className="navbar__link" to="/InventoryAudit">New Inventory Audit</Link></li>
+            <li className="navbar__item active"><Link className="navbar__link" to="/auditButtons">Past Audits</Link></li>
             {
-                localStorage.getItem("kandy_user")
+                localStorage.getItem("honey_user")
                     ? <li className="navbar__item navbar__logout">
                         <Link className="navbar__link" to="" onClick={() => {
-                            localStorage.removeItem("kandy_user")
+                            localStorage.removeItem("honey_user")
                             navigate("/", { replace: true })
                         }}>Logout</Link>
                     </li>
