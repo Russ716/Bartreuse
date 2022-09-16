@@ -189,24 +189,23 @@ export const InventoryAudit = () => {
                     }
                 )}
             </fieldset>
-            <button
-                onClick={(clickEvent) => justSendIt(clickEvent)}
-                className="form-button">
-                Send Bottle
-            </button>
+
             <li>
                 <select className="locations">
                     <option value="">Where counted?</option>
                     {locations.map(
                         location => {
                             return <option key={`location--${location.id}`} value={`${location.id}`}>{location.description}</option>
-
                         }
-
                     )
                     }
                 </select>
             </li>
+            <button
+                onClick={(clickEvent) => justSendIt(clickEvent)}
+                className="form-button">
+                Send Bottle
+            </button>
             <article className="bottlesCounted">
                 {bottles.map(
                     bottle => {
@@ -222,3 +221,18 @@ export const InventoryAudit = () => {
         </form>
     )
 }
+/*
+"id": 3,
+    //   "userId": 5,
+    //   "vendorId": 2,
+    //   "brand": "Del Sol",
+    //   "name": "Réjane",
+    //   "containerId": 3,
+    //   "quantity": 76,
+    //   "open": true,
+      "openBottleId": 3,
+    //   "cost": "$14.07",
+    //   "price": "$5.71",
+    //  "locationId": 2,
+    //   "par": 40
+*/

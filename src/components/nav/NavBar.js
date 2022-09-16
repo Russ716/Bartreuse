@@ -12,7 +12,7 @@ export const NavBar = () => {
             <li className="navbar__item active"><Link className="navbar__link" to="/bottleList">List of Bottles</Link></li>
             <li className="navbar__item active"><Link className="navbar__link" to="/NewBottleForm">New Bottle</Link></li>
             <li className="navbar__item active"><Link className="navbar__link" to="/InventoryAudit">New Inventory Audit</Link></li>
-            <li className="navbar__item active"><Link className="navbar__link" to="/auditButtons">Past Audits</Link></li>
+            <li className="navbar__item active"><Link className="navbar__link" to="/AuditButtons">Past Audits</Link></li>
             {
                 localStorage.getItem("honey_user")
                     ? <li className="navbar__item navbar__logout">
