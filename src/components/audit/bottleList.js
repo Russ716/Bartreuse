@@ -9,12 +9,26 @@ adds edit button for each row, to change par or other information.
 import "./bottles.css"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Bottle } from "./bottlle"
+
 
 export const BottleList = ({ searchTermState }) => {
     const [bottles, setBottles] = useState([])
+    const [filteredBottles, setFiltered] = useState([])
+    const [users, setUsers] = useState([])
+    const localHoneyUser = localStorage.getItem("honey_user")
+    const honeyUserObject = JSON.parse(localHoneyUser)
+
+    const getAllBottles = () => {
+        fetch(`http://localhost:8088/bottles?_expand=container`)
+            .then(response => response.json())
+            .then((bottleArray) => {
+                setBottles(bottleArray)
+            })
+    }
     useEffect(
         () => {
-            fetch(`http://localhost:8088/bottles`)
+            fetch(`http://localhost:8088/bottles?_expand=container`)
                 .then(response => response.json())
                 .then((bottleArray) => {
                     setBottles(bottleArray)
@@ -22,20 +36,44 @@ export const BottleList = ({ searchTermState }) => {
         },
         [] // When this array is empty, you are observing initial component state
     )
+    useEffect(() => {
+        fetch(`http://localhost:8088/users`)
+            .then(response => response.json())
+            .then((userArray) => {
+                setUsers(userArray)
+            })
+    },
+        [] // When this array is empty, you are observing initial component state
+    )
+
+    useEffect(
+        () => {
+            if (honeyUserObject.id === users.id && users.isOwner) {
+                // !for bar owner
+                setFiltered(bottles)
+            }
+            else {
+                // !for inventory auditors
+                const myBottles = bottles.filter(bottle => bottle.userId === honeyUserObject.id)
+                setFiltered(myBottles)
+            }
+        },
+        [bottles]
+    )
 
     return <>
         <h2>List of bottles</h2>
         <article className="bottles">
             {
-                bottles.map(
-                    (bottle) => {
-                        return <section className="bottle" key={`bottle--${bottle.id}`}>
-                            <header>{bottle.brand} {bottle.drink}</header>
-                            <footer className="emergency" ><b>Quantity:</b> {bottle.quantity ? `${bottle.quantity}` : "🚨"} <b>Par:</b> {bottle.par}</footer>
-                        </section>
-                    }
+                filteredBottles.map(
+                    (bottle) => <Bottle
+                        key={`bottle--${bottle.id}`}
+                        getAllBottles={getAllBottles}
+                        bottleObject={bottle}
+                        currentUser={honeyUserObject} />
                 )
             }
+
         </article>
     </>
 }

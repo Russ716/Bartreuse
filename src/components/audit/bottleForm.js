@@ -8,8 +8,8 @@
 TODO input fields for: 
 
 Brand Name
-Drink Name
-Drink Style
+ Name
+
 Vendor.type
 Par Level
 Cost per unit
@@ -22,14 +22,19 @@ Cost per unit
 import { useNavigate } from "react-router"
 import React, { useState, useEffect } from "react"
 export const NewBottleForm = () => {
+    const localHoneyUser = localStorage.getItem("honey_user")
+    const honeyUserObject = JSON.parse(localHoneyUser)
     const [bottle, update] = useState({
         brand: "",
-        drink: "",
+        name: "",
         cost: "",
         par: (0),
-        typeId: (0)
+        vendorId: (0)
     })
+    const [containers, updateContainer] = useState([])
+    const [openableBottles, setOpenable] = useState(false)
     const [vendors, updateTypes] = useState([])
+    const [locations, updateLocations] = useState([])
     useEffect(
         () => {
             fetch('http://localhost:8088/vendors')
@@ -40,15 +45,51 @@ export const NewBottleForm = () => {
         },
         []
     )
+    useEffect(
+        () => {
+            fetch('http://localhost:8088/locations')
+                .then(response => response.json())
+                .then((locationsArray) => {
+                    updateLocations(locationsArray)
+                })
+        },
+        []
+    )
+    useEffect(
+        () => {
+            fetch('http://localhost:8088/containers')
+                .then(response => response.json())
+                .then((containersArray) => {
+                    updateContainer(containersArray)
+                })
+        },
+        []
+    )
     const navigate = useNavigate()
+    const openBottle = () => {
+        setOpenable(!openableBottles)
+        if (openableBottles) {
+            const copy = { ...bottle }
+            copy.open = true
+            update(copy)
+        } else {
+            const closed = 0
+        }
+    }
 
     const justSendIt = (event) => {
         event.preventDefault()
         const bottleToSendToAPI = {
-            typeId: bottle.typeId,
+            userId: honeyUserObject.id,
+            vendorId: bottle.vendorId,
             brand: bottle.brand,
-            drink: bottle.drink,
+            name: bottle.name,
+            containerId: bottle.containerId,
+            quantity: bottle.quantity,
+            open: bottle.open,
             cost: bottle.cost,
+            price: bottle.price,
+            location: bottle.location,
             par: bottle.par,
         }
         return fetch('http://localhost:8088/bottles', {
@@ -93,11 +134,11 @@ export const NewBottleForm = () => {
                         type="text"
                         className="form-control"
                         placeholder="Name that new bottle..."
-                        value={bottle.drink}
+                        value={bottle.name}
                         onChange={
                             (evt) => {
                                 const copy = { ...bottle }
-                                copy.drink = evt.target.value
+                                copy.name = evt.target.value
                                 update(copy)
                             }
                         } />
@@ -123,6 +164,42 @@ export const NewBottleForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
+                    <label htmlFor="productPrice">Unit price:</label>
+                    <input
+                        required autoFocus
+                        type="number"
+                        className="form-control"
+                        placeholder="How much should we charge ?"
+                        value={bottle.price}
+                        onChange={
+                            (evt) => {
+                                const copy = { ...bottle }
+                                copy.price = evt.target.value
+                                update(copy)
+                            }
+                        } />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="productQuantity">Unit quantity:</label>
+                    <input
+                        required autoFocus
+                        type="number"
+                        className="form-control"
+                        placeholder="How many to start with?"
+                        value={bottle.quantity}
+                        onChange={
+                            (evt) => {
+                                const copy = { ...bottle }
+                                copy.quantity = evt.target.value
+                                update(copy)
+                            }
+                        } />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
                     <label htmlFor="name">Bottle Par:</label>
                     <input
                         required autoFocus
@@ -140,15 +217,49 @@ export const NewBottleForm = () => {
                 </div>
             </fieldset>
             <fieldset className="typeList">
-                <label htmlFor="type">Vendor:</label>
-                {vendors.map(
-                    (vendor) => {
-                        return <div className="form-group">
+                <label htmlFor="type">Container type:</label>
+                {containers.map(
+                    (container) => {
+                        return <div className="form-group" key={`container--${container.id}`} >
                             <input
                                 onChange={
                                     (evt) => {
                                         const copy = { ...bottle }
-                                        copy.typeId = evt.target.value
+                                        copy.containerType = container.id
+                                        update(copy)
+                                    }
+                                } type="radio" value={container.id} name="type" />{container.material} {container.name}, {container.sizeML} mL,
+                        </div>
+                    }
+                )}
+            </fieldset>
+            <fieldset>
+                <button onClick={() => {
+                    openBottle()
+                }}> This bottle will be poured
+                </button>
+            </fieldset >
+            <li>
+                <select className="locations">
+                    <option value="">Where should it be stored?</option>
+                    {locations.map(
+                        location => {
+                            return <option key={`location--${location.id}`} value={`${location.id}`}>{location.description}</option>
+                        }
+                    )
+                    }
+                </select>
+            </li>
+            <fieldset className="typeList">
+                <label htmlFor="type">Vendor:</label>
+                {vendors.map(
+                    (vendor) => {
+                        return <div className="form-group" key={vendor.id}>
+                            <input
+                                onChange={
+                                    (evt) => {
+                                        const copy = { ...bottle }
+                                        copy.vendorId = evt.target.value
                                         update(copy)
                                     }
                                 } type="checkbox" value={vendor.id} name="type" />{vendor.name}, {vendor.contact}, {vendor.type}
@@ -161,6 +272,7 @@ export const NewBottleForm = () => {
                 className="form-button">
                 Send Bottle
             </button>
-        </form>
+        </form >
     )
 }
+
