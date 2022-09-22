@@ -5,7 +5,6 @@ exports and displays a list of the bottles in permanent state, database.bottles
 adds a delete button to each row, to remove from database. 
 adds edit button for each row, to change par or other information.
 */
-// ! fix delete on Bottlle.js
 
 import "./bottles.css"
 import { useEffect, useState } from "react"
