@@ -236,7 +236,7 @@ export const NewBottleForm = () => {
                                         copy.containerId = container.id
                                         update(copy)
                                     }
-                                } type="radio" value={container.id} name="type" />
+                                } type="radio" checked value={container.id} name="type" />
                             {container.material} {container.name}, {container.sizeML} mL,
                         </div>
                     }
@@ -280,7 +280,7 @@ export const NewBottleForm = () => {
                                         copy.vendorId = evt.target.value
                                         update(copy)
                                     }
-                                } type="checkbox" value={vendor.id} name="type" />{vendor.name}, {vendor.contact}, {vendor.type}
+                                } type="radio" checked value={vendor.id} name="type" />{vendor.name}, {vendor.contact}, {vendor.type}
                         </div>
                     }
                 )}
