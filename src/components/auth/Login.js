@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import "./Login.css"
 
 export const Login = () => {
-    const [email, set] = useState("Web@Developer.com")
+    const [email, set] = useState("West@4winds.net")
     const navigate = useNavigate()
 
     const handleLogin = (e) => {
@@ -43,16 +43,17 @@ export const Login = () => {
                             placeholder="Email address"
                             required autoFocus />
                     </fieldset>
+
                     <fieldset>
-                        <button type="submit">
+                        <button className="myButton" type="submit">
                             Sign in
                         </button>
+                        <button className="link--register"><Link to="/register">Not a member yet?</Link></button>
+
                     </fieldset>
                 </form>
             </section>
-            <section className="link--register">
-                <Link to="/register">Not a member yet?</Link>
-            </section>
+
         </main>
     )
 }

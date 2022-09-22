@@ -1,27 +1,9 @@
-// ! New Bottle
-// ? Transient State:
-// * Text input fields
-// * Checkbox for openable
-// * Save Button sends to database
 
-/*
-TODO input fields for: 
+import { useNavigate, useParams } from "react-router-dom"
 
-Brand Name
- Name
-
-Vendor.type
-Par Level
-Cost per unit
-! dropdown Container
-! openable checkbox
-? Full weight if box is checked
-& Button to save from transient state to permanent in database.bottles.
-*/
-
-import { useNavigate } from "react-router"
 import React, { useState, useEffect } from "react"
-export const NewBottleForm = () => {
+export const EditBottle = ({ getAllBottles, bottleObject, currentUser }) => {
+    const { bottleId } = useParams()
     const localHoneyUser = localStorage.getItem("honey_user")
     const honeyUserObject = JSON.parse(localHoneyUser)
     const [bottle, update] = useState({
@@ -30,9 +12,9 @@ export const NewBottleForm = () => {
         cost: 0,
         price: 0,
         par: 0,
-        vendorId: (0),
-        userId: (0),
-        containerId: (0),
+        vendorId: 0,
+        userId: 0,
+        containerId: 0,
         quantity: 0,
         open: false,
         location: "",
@@ -41,6 +23,16 @@ export const NewBottleForm = () => {
     const [openableBottles, setOpenable] = useState(false)
     const [vendors, updateTypes] = useState([])
     const [locations, updateLocations] = useState([])
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/bottles/${bottleId}`)
+                .then(response => response.json())
+                .then((data) => {
+                    update(data)
+                })
+        }, [bottleId]
+    )
+
     useEffect(
         () => {
             fetch('http://localhost:8088/vendors')
@@ -85,7 +77,7 @@ export const NewBottleForm = () => {
         }
     }
 
-    const justSendIt = (event) => {
+    const justEditIt = (event) => {
         event.preventDefault()
         const bottleToSendToAPI = {
             userId: honeyUserObject.id,
@@ -100,8 +92,8 @@ export const NewBottleForm = () => {
             location: bottle.location,
             par: bottle.par,
         }
-        return fetch('http://localhost:8088/bottles', {
-            method: "POST",
+        return fetch(`http://localhost:8088/bottles/${bottleId}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -115,7 +107,7 @@ export const NewBottleForm = () => {
     }
     return (
         <form className="productForm">
-            <h2 className="productForm_title">Create New Bottle</h2>
+            <h3 className="productForm_title">Edit this Bottle</h3>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Brand Name:</label>
@@ -123,7 +115,7 @@ export const NewBottleForm = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        placeholder="Name that new bottle..."
+                        placeholder="change the brand..."
                         value={bottle.brand}
                         onChange={
                             (evt) => {
@@ -141,7 +133,7 @@ export const NewBottleForm = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        placeholder="Name that new bottle..."
+                        placeholder="Name that bottle..."
                         value={bottle.name}
                         onChange={
                             (evt) => {
@@ -195,7 +187,7 @@ export const NewBottleForm = () => {
                         required autoFocus
                         type="number"
                         className="form-control"
-                        placeholder="How many to start with?"
+                        placeholder="How many do we have?"
                         value={bottle.quantity}
                         onChange={
                             (evt) => {
@@ -236,7 +228,7 @@ export const NewBottleForm = () => {
                                         copy.containerId = container.id
                                         update(copy)
                                     }
-                                } type="radio" value={container.id} name="type" />
+                                } type="radio" checked value={container.id} name="type" />
                             {container.material} {container.name}, {container.sizeML} mL,
                         </div>
                     }
@@ -261,7 +253,7 @@ export const NewBottleForm = () => {
                                         copy.locationId = location.id
                                         update(copy)
                                     }
-                                } key={`location--${location.id}`} value={`${location.id}`}>
+                                } key={`location--${location.id}`} defaultValue={`${location.id}`} value={`${location.id}`}>
                                 {location.description}</option>
                         }
                     )
@@ -286,9 +278,9 @@ export const NewBottleForm = () => {
                 )}
             </fieldset>
             <button
-                onClick={(clickEvent) => justSendIt(clickEvent)}
+                onClick={(clickEvent) => justEditIt(clickEvent)}
                 className="form-button">
-                Send Bottle
+                Save Edits
             </button>
         </form >
     )

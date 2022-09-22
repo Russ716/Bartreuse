@@ -88,7 +88,7 @@ export const InventoryAudit = () => {
     }
     return (
         <form className="productForm">
-            <h2 className="productForm_title">Create New Bottle</h2>
+            <h2 className="productForm_title">Create New Audit</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Brand Name:</label>
@@ -96,7 +96,7 @@ export const InventoryAudit = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        placeholder="Name that new bottle..."
+                        placeholder="Which brand?"
                         value={bottle.brand}
                         onChange={
                             (evt) => {
@@ -114,7 +114,7 @@ export const InventoryAudit = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        placeholder="Name that new bottle..."
+                        placeholder="Which bottle?"
                         value={bottle.drink}
                         onChange={
                             (evt) => {
@@ -144,7 +144,8 @@ export const InventoryAudit = () => {
                 </div>
             </fieldset>
             <fieldset>
-                <button onClick={() => {
+                <button onClick={(clickEvent) => {
+                    clickEvent.preventDefault()
                     setOpenable(!openableBottles)
                 }}>{
                         openableBottles
@@ -206,12 +207,13 @@ export const InventoryAudit = () => {
                 className="form-button">
                 Send Bottle
             </button>
+
             <article className="bottlesCounted">
                 {bottles.map(
                     bottle => {
                         return <section className="ticket" key={`bottle--${bottle.id}`}>
-                            <header>{bottle.brand} {bottle.drink}</header>
-                            <footer className="emergency" ><b>Quantity</b>: {bottle.quantity}</footer>
+                            <header>{bottle.brand} {bottle.name}</header>
+                            <footer className="emergency" ><b>Quantity</b>: {bottle.quantity} Par: {bottle.par}</footer>
                         </section>
                     }
                 )
@@ -221,18 +223,3 @@ export const InventoryAudit = () => {
         </form>
     )
 }
-/*
-"id": 3,
-    //   "userId": 5,
-    //   "vendorId": 2,
-    //   "brand": "Del Sol",
-    //   "name": "Réjane",
-    //   "containerId": 3,
-    //   "quantity": 76,
-    //   "open": true,
-      "openBottleId": 3,
-    //   "cost": "$14.07",
-    //   "price": "$5.71",
-    //  "locationId": 2,
-    //   "par": 40
-*/
