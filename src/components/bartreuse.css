@@ -1,5 +1,5 @@
 body {
-    background-color: #6699cc;
+    background-color: #408000;
     /* CSS HEX */
     --chartreuse-web: #7fff00ff;
     --yellow: #ffff00ff;
@@ -10,4 +10,77 @@ body {
     --yellow: hsla(60, 100%, 50%, 1);
     --green: hsla(120, 100%, 50%, 1);
 
+}
+
+.colors {
+    color: #80FF00;
+    /* 50% Chartreuse web */
+    color: #ADFF2F;
+    /* 59% Green-Yellow */
+    color: #D1E231;
+    /* 54% Pear */
+    color: #9ACD32;
+    /* 50% Yellow-Green */
+    color: #DFFF00;
+    /* 50% Chartreuse-Traditional h2*/
+    color: #93C572;
+    /* 61% Pistachio */
+    color: #A7FC00;
+    /* 49% Springbud */
+    color: #808000;
+    /* 25% Olive */
+    color: #E3F988;
+    /* 75% Mindaro */
+}
+
+h1 {
+    text-shadow: 0 0 5px #7fff00ff, 0 0 10px #7fff00ff, 0 0 15px #7fff00ff, 0 0 20px #7fff00ff, 0 0 30px #7fff00ff, 0 0 40px #7fff00ff, 0 0 55px #7fff00ff, 0 0 75px #7fff00ff, 2px 2px 2px rgba(127, 255, 0, 0);
+    color: #DFFF00;
+
+}
+
+h2 {
+    color: #DFFF00;
+    background-color: #93C572;
+}
+
+h3 {
+    color: #ADFF2F;
+    background-color: #9ACD32;
+    display: block;
+    margin: 50px auto 0;
+    width: auto;
+
+    padding: 10px;
+}
+
+
+.login {
+    background-color: #808000;
+}
+
+.myButton {
+    color: rgb(227, 249, 136);
+    font-size: 20px;
+    line-height: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    background-image: linear-gradient(135deg, rgb(167, 252, 0) 0%, rgb(128, 128, 0) 100%);
+    box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px;
+    border: 2px solid #DFFF00;
+    display: inline-block;
+}
+
+.myButton:hover {
+    background: #9ACD32;
+}
+
+.myButton:active {
+    background: #808000;
 }

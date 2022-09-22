@@ -1,13 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=specimen|Bree+Serif");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Bree", 'Fira Sans', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #80ff00 url("https://vinepair.com/wp-content/uploads/2022/03/ntk-chartreuse-social.jpg") no-repeat fixed 0 0;
+  background-size: cover;
+  padding: 50px 20px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.colors {
+  color: #80FF00;
+  color: #ADFF2F;
+  color: #D1E231;
+  color: #9ACD32;
+  color: #DFFF00;
+  color: #93C572;
+  color: #A7FC00;
+  color: #808000;
+  color: #E3F988;
 }

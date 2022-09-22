@@ -5,6 +5,7 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import "./bartreuse.css"
 import { ApplicationViews } from "./views/ApplicationViews"
+// import chartreuse from "./images/ntk-chartreuse-social.jpg"
 
 
 export const Bartreuse = () => {
@@ -16,7 +17,7 @@ export const Bartreuse = () => {
             <Authorized>
                 <>
                     <NavBar />
-                   
+                    {/* <img src={chartreuse} class="logo" /> */}
                     <ApplicationViews />
                 </>
             </Authorized>

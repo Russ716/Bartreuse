@@ -5,6 +5,7 @@ exports and displays a list of the bottles in permanent state, database.bottles
 adds a delete button to each row, to remove from database. 
 adds edit button for each row, to change par or other information.
 */
+// ! fix delete on Bottlle.js
 
 import "./bottles.css"
 import { useEffect, useState } from "react"
@@ -20,7 +21,7 @@ export const BottleList = ({ searchTermState }) => {
     const honeyUserObject = JSON.parse(localHoneyUser)
 
     const getAllBottles = () => {
-        fetch(`http://localhost:8088/bottles?_expand=container`)
+        fetch(`http://localhost:8088/bottles?_expand=container&_expand=user`)
             .then(response => response.json())
             .then((bottleArray) => {
                 setBottles(bottleArray)
@@ -28,7 +29,7 @@ export const BottleList = ({ searchTermState }) => {
     }
     useEffect(
         () => {
-            fetch(`http://localhost:8088/bottles?_expand=container`)
+            fetch(`http://localhost:8088/bottles?_expand=container&_expand=user`)
                 .then(response => response.json())
                 .then((bottleArray) => {
                     setBottles(bottleArray)
@@ -48,7 +49,8 @@ export const BottleList = ({ searchTermState }) => {
 
     useEffect(
         () => {
-            if (honeyUserObject.id === users.id && users.isOwner) {
+            const myUser = users.filter(user => user.id === honeyUserObject.id)
+            if (myUser[0]?.isOwner === true) {
                 // !for bar owner
                 setFiltered(bottles)
             }
@@ -62,8 +64,8 @@ export const BottleList = ({ searchTermState }) => {
     )
 
     return <>
-        <h2>List of bottles</h2>
-        <article className="bottles">
+        <h3>List of bottles</h3>
+        <article className="bottleList">
             {
                 filteredBottles.map(
                     (bottle) => <Bottle

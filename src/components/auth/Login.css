@@ -1,6 +1,7 @@
-.h1, h1 {
+.h1,
+h1 {
     font-size: 2.5rem;
-    color: #fff275;
+    color: #80FF00;
 }
 
 fieldset {
@@ -8,19 +9,32 @@ fieldset {
     padding: 1rem 0;
     margin: 0;
     border: 0;
-    color: #fff275;
+    color: #80FF00;
 }
 
 .form--login {
     display: inline-block;
     margin: 0 auto;
     text-align: left;
-    color: #a23e48;
+    color: #80FF00;
 }
 
-.form--login > fieldset > input[type="email"] {
+.colors {
+    color: #80FF00;
+    color: #ADFF2F;
+    color: #D1E231;
+    color: #9ACD32;
+    color: #DFFF00;
+    color: #93C572;
+    color: #A7FC00;
+    color: #808000;
+    color: #E3F988;
+}
+
+.form--login>fieldset>input[type="email"] {
     width: 25em;
 }
+
 
 .label--login {
     width: 8rem;
@@ -35,13 +49,13 @@ fieldset {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #a23e48;
-    background-color: #ff8c42;
+    color: #408000;
+    background-color: #E3FF00;
     background-clip: padding-box;
-    border: 1px solid #ff3c38;
+    border: 1px solid #E3FF00;
     border-radius: .25rem;
-    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .container--login {
@@ -53,7 +67,7 @@ fieldset {
     z-index: 1;
     min-height: 25rem;
     min-width: 45rem;
-    background-color: #6699cc;
+    background-color: #408000;
     background-blend-mode: overlay;
     background-repeat: no-repeat;
 }
@@ -61,5 +75,31 @@ fieldset {
 .button--close {
     position: relative;
     bottom: -2rem;
+    color: #E3FF00;
 }
 
+.link--register {
+    color: rgb(227, 249, 136);
+    font-size: 20px;
+    line-height: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    background-image: linear-gradient(135deg, rgb(167, 252, 0) 0%, rgb(128, 128, 0) 100%);
+    box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px;
+    border: 2px solid #DFFF00;
+    display: inline-block;
+}
+
+.link--register:hover {
+    background: #9ACD32;
+}
+
+.link--register:active {
+    background: #808000;
+}

@@ -1,0 +1,68 @@
+.bottle__Delete {
+    color: rgb(128, 128, 0);
+    font-size: 20px;
+    line-height: 20px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    background-image: linear-gradient(to right, rgb(223, 255, 0) 0%, rgb(128, 255, 0) 100%);
+    box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px;
+    border: 2px solid #93C572;
+    display: inline-block;
+}
+
+.bottle__Delete:hover {
+    background: #DFFF00;
+}
+
+.bottle__Delete:active {
+    background: #80FF00;
+}
+
+.bottle {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.bottleContainer {
+    display: flex;
+    font-size: larger;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000;
+    box-shadow: 5px 5px 15px 5px #000000;
+    background-color: #A7FC00;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    margin: 50px auto 0;
+    color: #808000;
+    padding: 10px;
+}
+footer {
+    display: flex;
+    flex-direction: column;
+}
+.par {
+    display: flex;
+    flex-direction: row;
+}
+.emergency {
+    display: flex;
+    font-size: large;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000;
+    box-shadow: 5px 5px 15px 5px #000000;
+    background-color: #D1E231;
+    display: flex;
+    margin: 50px auto 0;
+    width: 200px;
+    height: 60px;
+    color: #808000;
+    padding: 10px;
+}
