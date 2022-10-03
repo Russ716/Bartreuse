@@ -115,7 +115,7 @@ export const NewBottleForm = () => {
     }
     return (
         <form className="productForm">
-            <h2 className="productForm_title">Create New Bottle</h2>
+            <h3 className="productForm_title">Create New Bottle</h3>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Brand Name:</label>

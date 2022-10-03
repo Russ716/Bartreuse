@@ -11,7 +11,9 @@ body {
     --green: hsla(120, 100%, 50%, 1);
 
 }
-
+.logo {
+    width: 50%;
+}
 .colors {
     color: #80FF00;
     /* 50% Chartreuse web */

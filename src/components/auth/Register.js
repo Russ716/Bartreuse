@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./Login.css"
+import Bus from "../images/image.jpg"
 
 export const Register = (props) => {
     const [customer, setCustomer] = useState({
@@ -81,6 +82,8 @@ export const Register = (props) => {
                 <fieldset>
                     <button className="myButton" type="submit"> Register </button>
                 </fieldset>
+                <div>Bartreuse is a wholly owned subsidiary of Russ's Busses. </div>
+                <img src={Bus} class="logo" alt="Russ' Busses" />
             </form>
         </main>
     )

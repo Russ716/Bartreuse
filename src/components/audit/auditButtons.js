@@ -23,9 +23,9 @@ export const GenerateOrder = () => {
         (bottle) => {
             if (parseInt(bottle.quantity) < parseInt(bottle.par)) {
                 let orderNumber = parseInt(bottle.par) - parseInt(bottle.quantity)
-                return <section className="order" key={`order--${bottle.id}`}>
+                return <section className="bottleContainer" key={`order--${bottle.id}`}>
                     <header>{bottle.brand} {bottle.name}</header>
-                    <footer className="amount" ><b>Quantity: {bottle.quantity}</b> 
+                    <footer className="bottles" ><b>Quantity: {bottle.quantity}</b> 
                         <i>Par: {bottle.par} </i> 
                         <b>Order ≥ {orderNumber}</b></footer>
                 </section>

@@ -7,7 +7,7 @@ import "./bartreuse.css"
 import { ApplicationViews } from "./views/ApplicationViews"
 // import chartreuse from "./images/ntk-chartreuse-social.jpg"
 
-
+{/* <img src={chartreuse} class="logo" /> */ }
 export const Bartreuse = () => {
     return <Routes>
         <Route path="/login" element={<Login />} />
@@ -17,7 +17,7 @@ export const Bartreuse = () => {
             <Authorized>
                 <>
                     <NavBar />
-                    {/* <img src={chartreuse} class="logo" /> */}
+                    
                     <ApplicationViews />
                 </>
             </Authorized>

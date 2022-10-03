@@ -88,7 +88,7 @@ export const InventoryAudit = () => {
     }
     return (
         <form className="productForm">
-            <h2 className="productForm_title">Create New Audit</h2>
+            <h3 className="productForm_title">Create New Audit</h3>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Brand Name:</label>
@@ -211,7 +211,7 @@ export const InventoryAudit = () => {
             <article className="bottlesCounted">
                 {bottles.map(
                     bottle => {
-                        return <section className="ticket" key={`bottle--${bottle.id}`}>
+                        return <section className="bottleContainer" key={`bottle--${bottle.id}`}>
                             <header>{bottle.brand} {bottle.name}</header>
                             <footer className="emergency" ><b>Quantity</b>: {bottle.quantity} Par: {bottle.par}</footer>
                         </section>
