@@ -208,13 +208,18 @@ export const InventoryAudit = () => {
                 Send Bottle
             </button>
 
-            <article className="bottlesCounted">
+            <article className="bottleCount">
                 {bottles.map(
                     bottle => {
-                        return <section className="bottleContainer" key={`bottle--${bottle.id}`}>
-                            <header>{bottle.brand} {bottle.name}</header>
-                            <footer className="emergency" ><b>Quantity</b>: {bottle.quantity} Par: {bottle.par}</footer>
-                        </section>
+                        return <>
+                            <section className="bottle" key={`bottle--${bottle.id}`}>
+                                <div className="bottlesCounted">
+                                    <header>{bottle.brand} {bottle.name}</header>
+                                    {bottle.container}
+                                    <footer className="emergency" ><b>Counted:</b> {bottle.quantity} </footer>
+                                </div>
+                            </section>
+                        </>
                     }
                 )
                 }

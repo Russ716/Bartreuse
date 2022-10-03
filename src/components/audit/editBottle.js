@@ -272,7 +272,7 @@ export const EditBottle = ({ getAllBottles, bottleObject, currentUser }) => {
                                         copy.vendorId = evt.target.value
                                         update(copy)
                                     }
-                                } type="checkbox" value={vendor.id} name="type" />{vendor.name}, {vendor.contact}, {vendor.type}
+                                } type="radio" checked value={vendor.id} name="type" />{vendor.name}, {vendor.contact}, {vendor.type}
                         </div>
                     }
                 )}
